@@ -1,12 +1,13 @@
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
-
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
 app.use(helmet.hidePoweredBy()); //to hide potentially dangerous information using helmet.hidePoweredBy() middleware
 app.use(helmet.frameguard({ action: "deny" })); //mitigate the risk of clickjacking using helmet.frameguard() middleware
 app.use(helmet.xssFilter()); //mitigate th risk of cross site scripting (xss) attacks using helmet.xssfilter()
 app.use(helmet.noSniff()); //Avoid Inferring the Response MIME Type with helmet.noSniff()
 app.use(helmet.ieNoOpen()); //Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()
+app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true })); //Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()
 
 module.exports = app;
 const api = require("./server.js");
