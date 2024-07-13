@@ -10,6 +10,14 @@ app.use(helmet.ieNoOpen()); //Prevent IE from Opening Untrusted HTML with helmet
 app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true })); //Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()
 app.use(helmet.dnsPrefetchControl()); //Disable DNS Prefetching with helmet.dnsPrefetchControl()
 app.use(helmet.noCache()); //Disable Client-Side Caching with helmet.noCache()
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      "script-src": ["'self'", "trusted - cdn.com"],
+    },
+  })
+); //Set a Content Security Policy with helmet.contentSecurityPolicy()
 
 module.exports = app;
 const api = require("./server.js");
