@@ -14,7 +14,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      "script-src": ["'self'", "trusted - cdn.com"],
+      "script-src": ["'self'", "trusted-cdn.com"],
     },
   })
 ); //Set a Content Security Policy with helmet.contentSecurityPolicy()
