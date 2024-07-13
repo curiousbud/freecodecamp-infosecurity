@@ -9,6 +9,7 @@ app.use(helmet.noSniff()); //Avoid Inferring the Response MIME Type with helmet.
 app.use(helmet.ieNoOpen()); //Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()
 app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true })); //Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()
 app.use(helmet.dnsPrefetchControl()); //Disable DNS Prefetching with helmet.dnsPrefetchControl()
+app.use(helmet.noCache()); //Disable Client-Side Caching with helmet.noCache()
 
 module.exports = app;
 const api = require("./server.js");
