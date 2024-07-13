@@ -2,10 +2,12 @@ const express = require("express");
 const helmet = require("helmet");
 const app = express();
 
-app.use(helmet.hidePoweredBy());
-app.use(helmet.frameguard({ action: "deny" }));
-app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
+app.use(helmet.hidePoweredBy()); //to hide potentially dangerous information using helmet.hidePoweredBy() middleware
+app.use(helmet.frameguard({ action: "deny" })); //mitigate the risk of clickjacking using helmet.frameguard() middleware
+app.use(helmet.xssFilter()); //mitigate th risk of cross site scripting (xss) attacks using helmet.xssfilter()
+app.use(helmet.noSniff()); //Avoid Inferring the Response MIME Type with helmet.noSniff()
+app.use(helmet.ieNoOpen()); //Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()
+
 module.exports = app;
 const api = require("./server.js");
 app.use(express.static("public"));
