@@ -8,6 +8,7 @@ app.use(helmet.xssFilter()); //mitigate th risk of cross site scripting (xss) at
 app.use(helmet.noSniff()); //Avoid Inferring the Response MIME Type with helmet.noSniff()
 app.use(helmet.ieNoOpen()); //Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()
 app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true })); //Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()
+app.use(helmet.dnsPrefetchControl()); //Disable DNS Prefetching with helmet.dnsPrefetchControl()
 
 module.exports = app;
 const api = require("./server.js");
